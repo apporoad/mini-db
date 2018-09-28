@@ -1,6 +1,8 @@
 var fs = require('fs'),
 	mu = require('mini-util');
 
+var _lockSave = false
+
 var PATTERN_SHARP = /##?/g,
 
 	/**
@@ -89,15 +91,24 @@ var PATTERN_SHARP = /##?/g,
 			this._data = JSON.parse(
 				fs.readFileSync(filename, 'utf-8'));
 		},
-
 		/**
 		 * Save change to disk.
 		 * @param cb {function}
 		 */
 		_save: function (cb) {
-			var filename = this._filename,
+			//here lock save
+			if(!_lockSave){
+				_lockSave = true
+				var filename = this._filename,
 				data = this._data;
-			fs.writeFile(filename, JSON.stringify(data,null,2), cb );
+				setTimeout(() => {
+					fs.writeFile(filename, JSON.stringify(data,null,2), function(){
+						cb()
+						_lockSave = false
+					} );
+				}, 50);
+				
+			}
 		},
 
 		/**
