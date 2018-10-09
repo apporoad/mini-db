@@ -1,19 +1,10 @@
-#mini-db
+#mini-dbx
 
-
-
-mini-db 提供了类似关系数据库的持久存储能力，以JSON格式将数据保存在磁盘文件中。
-在JSON文件中，数据按照一个键（key）下按插入顺序存储多个值（value）的方式扁平存放,示例如下。
-
-```
-{
-    "tablename": [{name:"Jim",age:10}]
-}
-```
+more in [mini-db](https://github.com/tianmajs/mini-db).
 
 ## Install
 
-    npm install mini-db
+    npm install mini-dbx
 
 ## API
 
