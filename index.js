@@ -103,7 +103,7 @@ Storage = mu.inherit(Object, {
 			var filename = this._filename,
 			data = this._data;
 			setTimeout(() => {
-				console.log(filename)
+				//console.log(filename)
 				fs.writeFile(filename, JSON.stringify(data,null,2), function(){
 					_lockSave = false
 					if(_needSave.filename){
